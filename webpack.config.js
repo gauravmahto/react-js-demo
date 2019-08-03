@@ -2,35 +2,32 @@
   * Copyright 2019 - Author gauravm.git@gmail.com
   */
 
-const { join, resolve } = require('path');
-
 const { HotModuleReplacementPlugin } = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// tslint:disable: object-literal-sort-keys
 module.exports = {
 
-  entry: './src/client/index.js',
+  entry: './src/client/index.tsx',
   mode: 'development',
 
   module: {
     rules: [
 
-      // Transform JSX and ES6 syntax.
+      // TS and TSX loader.
       {
-        test: /\.(js|jsx)$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        options: {
-          presets: [
-            '@babel/env'
-          ]
-        }
+        test: /\.tsx?$/,
+        exclude: /(node_modules)/,
+        loader: 'awesome-typescript-loader'
       },
 
       // CSS loader.
       {
-        test: /\.css$/,
+        test: /\.scss$/,
         use: [
-          'style-loader', 'css-loader'
+          'style-loader',
+          'css-loader',
+          'sass-loader'
         ]
       }
 
@@ -39,25 +36,27 @@ module.exports = {
 
   resolve: {
     extensions: [
-      '*', '.js', '.jsx'
+      '*', '.js', '.tsx', '.ts'
     ]
   },
 
   output: {
-    path: resolve(__dirname, 'dist/'),
-    publicPath: '/dist/',
+    publicPath: '/',
     filename: 'bundle.js'
   },
 
   devServer: {
-    contentBase: join(__dirname, 'public/'),
-    port: 3000,
-    publicPath: 'http://localhost:3000/dist/',
+    port: 80,
+    publicPath: 'http://localhost:80/',
     hotOnly: true
   },
 
   plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/client/index.html'
+    }),
     new HotModuleReplacementPlugin()
   ]
 
 };
+// tslint:enable: object-literal-sort-keys

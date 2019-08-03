@@ -4,11 +4,11 @@
 
 import React, { Component } from 'react';
 
-import './hello-world.css';
+import './hello-world.scss';
 
-export class HelloWorld extends Component {
+export class HelloWorld extends Component<{ name: string }, {}> {
 
-  render() {
+  public render(): JSX.Element {
 
     return (
       <div className="hello-world">Hello {this.props.name}!</div>

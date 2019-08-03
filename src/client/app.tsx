@@ -7,11 +7,11 @@ import React, { Component } from 'react';
 
 import { HelloWorld } from './components/hello-world/hello-world';
 
-import './app.css';
+import './app.scss';
 
 class App extends Component {
 
-  render() {
+  public render(): JSX.Element {
 
     return (
       <div className="app">
