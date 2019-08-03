@@ -11,23 +11,27 @@ const nameProp = 'Gaurav';
 
 let helloWorld: ShallowWrapper<undefined, undefined>;
 
-beforeEach(() => {
+describe('HelloWorld component', () => {
 
-  helloWorld = shallow(<HelloWorld name={nameProp} />);
+  beforeEach(() => {
 
-});
+    helloWorld = shallow(<HelloWorld name={nameProp} />);
 
-it('should render without error', () => {
+  });
 
-  expect(helloWorld.length).toBe(1);
+  it('should render without error', () => {
 
-});
+    expect(helloWorld.length).toBe(1);
 
-it('should render the div with the passed props', () => {
+  });
 
-  const pNodes: ShallowWrapper<HTMLAttributes, undefined> = helloWorld.find('div');
+  it('should render the div with the passed props', () => {
 
-  expect(pNodes.length).toBe(1);
-  expect(pNodes.text()).toContain(nameProp);
+    const pNodes: ShallowWrapper<HTMLAttributes, undefined> = helloWorld.find('div');
+
+    expect(pNodes.length).toBe(1);
+    expect(pNodes.text()).toContain(nameProp);
+
+  });
 
 });
