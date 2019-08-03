@@ -5,7 +5,7 @@
 import { hot } from 'react-hot-loader';
 import React, { Component } from 'react';
 
-import { HelloWorld } from './components/hello-world/hello-world';
+import { HelloWorld } from 'components/hello-world/hello-world';
 
 import './app.scss';
 

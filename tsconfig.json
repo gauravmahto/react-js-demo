@@ -27,7 +27,11 @@
     "sourceMap": true,
     "incremental": true,
     "baseUrl": "./",
-    "paths": {}
+    "paths": {
+      "components/*": [
+        "./src/client/components/*"
+      ]
+    }
   },
   "exclude": [
     "dist",

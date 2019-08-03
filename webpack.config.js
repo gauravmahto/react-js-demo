@@ -2,14 +2,34 @@
   * Copyright 2019 - Author gauravm.git@gmail.com
   */
 
+const { join } = require('path');
+
 const { HotModuleReplacementPlugin } = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const clientDir = join(__dirname, 'src', 'client');
+
+const DEV_MODE = process.env.NODE_ENV;
+
+function getAliases(mode) {
+
+  const aliases = {
+    components: join(clientDir, 'components')
+  };
+
+  if (DEV_MODE === mode) {
+    aliases[ 'react-dom' ] = '@hot-loader/react-dom';
+  }
+
+  return aliases;
+
+}
 
 // tslint:disable: object-literal-sort-keys
 module.exports = {
 
-  entry: './src/client/index.tsx',
-  mode: 'development',
+  entry: join(clientDir, 'index.tsx'),
+  mode: DEV_MODE,
 
   module: {
     rules: [
@@ -42,7 +62,8 @@ module.exports = {
   resolve: {
     extensions: [
       '*', '.js', '.tsx', '.ts'
-    ]
+    ],
+    alias: getAliases(this.mode)
   },
 
   output: {
