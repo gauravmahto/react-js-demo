@@ -11,7 +11,7 @@ export class HelloWorld extends Component {
   render() {
 
     return (
-      <div className="hello-world">Hello world! @{this.props.time}</div>
+      <div className="hello-world">Hello {this.props.name}!</div>
     );
 
   }

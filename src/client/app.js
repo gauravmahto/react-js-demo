@@ -15,7 +15,7 @@ class App extends Component {
 
     return (
       <div className="app">
-        <HelloWorld time={Date.now()}></HelloWorld>
+        <HelloWorld name="Gaurav"></HelloWorld>
       </div>
     );
 

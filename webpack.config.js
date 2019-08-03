@@ -8,7 +8,7 @@ const { HotModuleReplacementPlugin } = require('webpack');
 
 module.exports = {
 
-  entry: './src/index.js',
+  entry: './src/client/index.js',
   mode: 'development',
 
   module: {
