@@ -5,7 +5,8 @@
 import { hot } from 'react-hot-loader';
 import React, { Component } from 'react';
 
-import { HelloWorld } from 'components/hello-world/hello-world';
+import { HelloWorld } from 'components/index';
+import { ImageUploader } from 'components/index';
 
 import './app.scss';
 
@@ -16,6 +17,11 @@ class App extends Component {
     return (
       <div className="app">
         <HelloWorld name="Gaurav"></HelloWorld>
+
+        <br />
+        <span>Upload image(s)</span>
+        <ImageUploader multiple={true} accept="image/png, image/jpeg"></ImageUploader>
+
       </div>
     );
 

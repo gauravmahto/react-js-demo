@@ -2,14 +2,14 @@
   "name": "react-js-demo",
   "version": "1.0.1",
   "description": "A simple web application using ReactJS",
-  "main": "src/server/app.js",
+  "main": "dist/server/app.js",
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
     "build-prod": "webpack --mode production",
     "build": "webpack --mode development",
     "start": "webpack-dev-server --mode development --start client",
-    "start-server": "node src/server/app.js"
+    "start-server": "node dist/server/app.js"
   },
   "repository": {
     "type": "git",

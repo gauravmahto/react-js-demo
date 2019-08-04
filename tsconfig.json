@@ -35,6 +35,7 @@
   "exclude": [
     "dist",
     "src/server",
-    "./*.js"
+    "./*.js",
+    "**/*.test.tsx"
   ]
 }
