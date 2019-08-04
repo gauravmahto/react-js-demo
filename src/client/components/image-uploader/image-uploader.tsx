@@ -4,7 +4,7 @@
 
 import React, { ChangeEvent, Component } from 'react';
 
-import { ImageSlider } from '../index';
+import { ConditionalDisplay, ImageSlider } from '../index';
 
 interface IImageUploaderOptions {
 
@@ -38,7 +38,9 @@ export class ImageUploader extends Component<IImageUploaderOptions, IImageUpload
 
         <input type="file" {...this.props} onChange={(event) => this.onChangeHandler(event)} />
 
-        {this.state.files && this.state.files.length && <ImageSlider files={this.state.files}></ImageSlider>}
+        <ConditionalDisplay isVisible={!!this.state.files && (0 !== this.state.files.length)}>
+          <ImageSlider files={this.state.files as FileList}></ImageSlider>
+        </ConditionalDisplay>
 
       </div>
     );
