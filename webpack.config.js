@@ -2,87 +2,21 @@
   * Copyright 2019 - Author gauravm.git@gmail.com
   */
 
-const { join } = require('path');
+/* eslint-disable @typescript-eslint/no-var-requires */
 
-const { HotModuleReplacementPlugin } = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const clientWebpackConfig = require('./webpack-front.config');
+const serverWebpackConfig = require('./webpack-back.config');
 
-const clientDir = join(__dirname, 'src', 'client');
+module.exports = (env, argv) => {
 
-const DEV_MODE = process.env.NODE_ENV;
+  const webpackConfigs = [ clientWebpackConfig(env, argv) ];
 
-function getAliases(mode) {
+  if ('client' !== argv.start) {
 
-  const aliases = {
-    components: join(clientDir, 'components')
-  };
+    webpackConfigs.push(serverWebpackConfig(env, argv));
 
-  if (DEV_MODE === mode) {
-    aliases[ 'react-dom' ] = '@hot-loader/react-dom';
   }
 
-  return aliases;
+  return webpackConfigs;
 
 }
-
-// tslint:disable: object-literal-sort-keys
-module.exports = {
-
-  entry: join(clientDir, 'index.tsx'),
-  mode: DEV_MODE,
-
-  module: {
-    rules: [
-
-      // TS and TSX loader.
-      {
-        test: /\.tsx?$/,
-        exclude: /(node_modules)/,
-        loader: 'awesome-typescript-loader'
-      },
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        loader: "source-map-loader",
-      },
-
-      // SCSS loader.
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
-        ]
-      }
-
-    ]
-  },
-
-  resolve: {
-    extensions: [
-      '*', '.js', '.tsx', '.ts'
-    ],
-    alias: getAliases(this.mode)
-  },
-
-  output: {
-    publicPath: '/',
-    filename: 'bundle.js'
-  },
-
-  devServer: {
-    port: 80,
-    publicPath: 'http://localhost:80/',
-    hotOnly: true
-  },
-
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: './src/client/index.html'
-    }),
-    new HotModuleReplacementPlugin()
-  ]
-
-};
-// tslint:enable: object-literal-sort-keys

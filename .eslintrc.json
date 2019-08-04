@@ -1,26 +1,164 @@
 {
   "parser": "@typescript-eslint/parser",
-  "parserOptions": {
-    "jsx": true,
-    "useJSXTextNode": true
-  },
-  "extends": [
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended"
-  ],
   "plugins": [
     "@typescript-eslint"
   ],
-  "rules": {
-    "indent": "off",
-    "@typescript-eslint/indent": [
-      "error",
-      2
-    ]
+  "parserOptions": {
+    "useJSXTextNode": true,
+    "project": "./tsconfig.json"
   },
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
   "settings": {
     "react": {
-      "version": "detect", // Tells eslint-plugin-react to automatically detect the version of React to use
+      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
     }
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "indent": "off",
+    "func-call-spacing": "off",
+    "no-unused-vars": "off",
+    "@typescript-eslint/array-type": [
+      "error",
+      "array-simple"
+    ],
+    "@typescript-eslint/consistent-type-definitions": [
+      "error",
+      "interface"
+    ],
+    "@typescript-eslint/explicit-function-return-type": [
+      "error",
+      {
+        "allowExpressions": true,
+        "allowTypedFunctionExpressions": true,
+        "allowHigherOrderFunctions": true
+      }
+    ],
+    "@typescript-eslint/func-call-spacing": [
+      "error"
+    ],
+    "@typescript-eslint/indent": [
+      "error",
+      2,
+      {
+        "FunctionDeclaration": {
+          "parameters": "first"
+        },
+        "SwitchCase": 1
+      }
+    ],
+    "@typescript-eslint/interface-name-prefix": [
+      "error",
+      "always"
+    ],
+    "@typescript-eslint/member-ordering": [
+      "error",
+      {
+        "default": [
+          // Fields
+          "public-static-field",
+          "protected-static-field",
+          "private-static-field",
+          "public-instance-field",
+          "protected-instance-field",
+          "private-instance-field",
+          // Constructors
+          "public-constructor",
+          "protected-constructor",
+          "private-constructor",
+          // Methods
+          "public-static-method",
+          "protected-static-method",
+          "private-static-method",
+          "public-instance-method",
+          "protected-instance-method",
+          "private-instance-method"
+        ]
+      }
+    ],
+    "@typescript-eslint/no-parameter-properties": [
+      "off"
+    ],
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "argsIgnorePattern": "^_"
+      }
+    ],
+    "@typescript-eslint/semi": [
+      "error"
+    ],
+    "space-before-function-paren": [
+      "error",
+      {
+        "anonymous": "always",
+        "named": "never",
+        "asyncArrow": "always"
+      }
+    ],
+    "block-spacing": [
+      "error",
+      "always"
+    ],
+    "brace-style": [
+      "error",
+      "1tbs"
+    ],
+    "padded-blocks": [
+      "error",
+      "always",
+      {
+        "allowSingleLineBlocks": true
+      }
+    ],
+    "space-before-blocks": [
+      "error",
+      "always"
+    ],
+    "no-multiple-empty-lines": [
+      "error",
+      {
+        "max": 1
+      }
+    ],
+    "capitalized-comments": [
+      "error"
+    ],
+    "lines-around-comment": [
+      "error",
+      {
+        "beforeBlockComment": true,
+        "beforeLineComment": true
+      }
+    ],
+    "spaced-comment": [
+      "error",
+      "always",
+      {
+        "markers": [
+          "*",
+          "!"
+        ]
+      }
+    ],
+    "keyword-spacing": [
+      "error",
+      {
+        "before": true
+      }
+    ],
+    "newline-before-return": [
+      "error"
+    ],
+    "no-console": [
+      "error"
+    ]
   }
 }

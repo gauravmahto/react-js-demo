@@ -1,13 +1,7 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "target": "es5",
-    "lib": [
-      "es5",
-      "es6",
-      "dom"
-    ],
-    "jsx": "react",
+    "target": "es2019",
     "allowJs": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
@@ -26,15 +20,10 @@
     "sourceMap": true,
     "incremental": true,
     "baseUrl": "./",
-    "paths": {
-      "components/*": [
-        "./src/client/components/*"
-      ]
-    }
+    "paths": {}
   },
-  "exclude": [
-    "dist",
-    "src/server",
-    "./*.js"
-  ]
+  "include": [
+    "./**/*"
+  ],
+  "exclude": []
 }
