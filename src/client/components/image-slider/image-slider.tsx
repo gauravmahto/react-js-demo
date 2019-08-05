@@ -4,13 +4,9 @@
 
 import React, { Component } from 'react';
 
+import { ConditionalDisplay } from '../index';
+
 import './image-slider.scss';
-
-interface IImageSliderParams {
-
-  files: FileList;
-
-}
 
 interface IImageSliderState {
 
@@ -18,21 +14,15 @@ interface IImageSliderState {
 
 }
 
-export class ImageSlider extends Component<IImageSliderParams, IImageSliderState> {
+export class ImageSlider extends Component<{}, IImageSliderState> {
 
-  public constructor(public props: IImageSliderParams) {
+  public state = {
+    imageSrc: []
+  };
 
-    super(props);
+  public async parseFiles(files: File[]): Promise<void> {
 
-    this.state = {
-      imageSrc: []
-    };
-
-  }
-
-  public async componentDidMount(): Promise<void> {
-
-    const imageSrc = await this.readFiles(Array.from(this.props.files));
+    const imageSrc = await this.readFiles(files);
 
     this.setState({
       imageSrc
@@ -42,18 +32,14 @@ export class ImageSlider extends Component<IImageSliderParams, IImageSliderState
 
   public render(): JSX.Element {
 
-    if (this.state.imageSrc.length > 0) {
-
-      return (
-        <div className="image-slider">
-          {...this.getFileDivs()}
-        </div>
-      );
-
-    }
-
     return (
-      <div className="image-slider loading"></div>
+      <div className="image-slider">
+        <ConditionalDisplay isVisible={0 !== this.state.imageSrc.length}>
+          <div className="image-container">
+            {...this.getFileDivs()}
+          </div>
+        </ConditionalDisplay>
+      </div>
     );
 
   }

@@ -2,9 +2,9 @@
   * Copyright 2019 - Author gauravm.git@gmail.com
   */
 
-import React, { ChangeEvent, Component } from 'react';
+import React, { ChangeEvent, Component, createRef, RefObject } from 'react';
 
-import { ConditionalDisplay, ImageSlider } from '../index';
+import { ImageSlider } from '../index';
 
 interface IImageUploaderOptions {
 
@@ -15,19 +15,23 @@ interface IImageUploaderOptions {
 
 interface IImageUploaderState {
 
-  files: FileList | null;
+  renderImageSlider: boolean;
 
 }
 
 export class ImageUploader extends Component<IImageUploaderOptions, IImageUploaderState> {
 
+  public state = {
+    renderImageSlider: false
+  };
+
+  private imageSliderElem: RefObject<ImageSlider>;
+
   public constructor(public props: IImageUploaderOptions) {
 
     super(props);
 
-    this.state = {
-      files: null
-    };
+    this.imageSliderElem = createRef();
 
   }
 
@@ -38,26 +42,23 @@ export class ImageUploader extends Component<IImageUploaderOptions, IImageUpload
 
         <input type="file" {...this.props} onChange={(event) => this.onChangeHandler(event)} />
 
-        <ConditionalDisplay isVisible={!!this.state.files && (0 !== this.state.files.length)}>
-          <ImageSlider files={this.state.files as FileList}></ImageSlider>
-        </ConditionalDisplay>
+        <ImageSlider ref={this.imageSliderElem} ></ImageSlider>
 
       </div>
     );
 
   }
 
-  private onChangeHandler(event: ChangeEvent<HTMLInputElement>): void {
+  private async onChangeHandler(event: ChangeEvent<HTMLInputElement>): Promise<void> {
 
-    if (null !== event.target.files) {
+    if ((null !== this.imageSliderElem.current) &&
+      (null !== event.target.files)) {
 
-      for (let index = 0; index < event.target.files.length; ++index) {
+      await this.imageSliderElem.current.parseFiles(Array.from(event.target.files));
 
-        this.setState({
-          files: event.target.files
-        });
-
-      }
+      this.setState({
+        renderImageSlider: true
+      });
 
     }
 

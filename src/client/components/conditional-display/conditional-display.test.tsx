@@ -3,7 +3,7 @@
   */
 
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow, ShallowWrapper, HTMLAttributes } from 'enzyme';
 
 import { ConditionalDisplay } from './conditional-display';
 
@@ -20,6 +20,14 @@ describe('ConditionalDisplay component', () => {
   it('should render without error', () => {
 
     expect(conditionalDisplay.length).toBe(1);
+
+  });
+
+  it('should render the container HTMLElement', () => {
+
+    const pNodes: ShallowWrapper<HTMLAttributes> = conditionalDisplay.find('.conditional-display');
+
+    expect(pNodes.length).toBe(1);
 
   });
 

@@ -3,7 +3,7 @@
   */
 
 import React from 'react';
-import { shallow, ShallowWrapper } from 'enzyme';
+import { shallow, ShallowWrapper, HTMLAttributes } from 'enzyme';
 
 import { ImageSlider } from './image-slider';
 
@@ -13,14 +13,21 @@ describe('ImageSlider component', () => {
 
   beforeEach(() => {
 
-    /* eslint-disable @typescript-eslint/no-object-literal-type-assertion */
-    imageSlider = shallow(<ImageSlider files={{} as FileList} />);
+    imageSlider = shallow(<ImageSlider />);
 
   });
 
   it('should render without error', () => {
 
     expect(imageSlider.length).toBe(1);
+
+  });
+
+  it('should render the container HTMLElement', () => {
+
+    const pNodes: ShallowWrapper<HTMLAttributes> = imageSlider.find('.image-slider');
+
+    expect(pNodes.length).toBe(1);
 
   });
 
