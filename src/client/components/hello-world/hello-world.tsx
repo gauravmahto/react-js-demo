@@ -3,10 +3,17 @@
   */
 
 import React, { Component } from 'react';
+import { RouteComponentProps } from 'react-router-dom';
 
 import './hello-world.scss';
 
-export class HelloWorld extends Component<{ name: string }, {}> {
+export interface IHelloWorldParams extends RouteComponentProps {
+
+  name: string;
+
+}
+
+export class HelloWorld extends Component<IHelloWorldParams> {
 
   public render(): JSX.Element {
 

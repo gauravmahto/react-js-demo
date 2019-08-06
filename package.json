@@ -8,7 +8,9 @@
     "test:watch": "jest --watch",
     "build-prod": "webpack --mode production",
     "build": "webpack --mode development",
-    "start": "webpack-dev-server --mode development --start client",
+    "build-client": "webpack --mode development --build client",
+    "build-server": "webpack --mode development --build server",
+    "start": "webpack-dev-server --mode development --build client",
     "start-server": "node dist/server/app.js"
   },
   "repository": {
@@ -26,7 +28,8 @@
     "express": "4.17.1",
     "react": "16.8.6",
     "react-dom": "16.8.6",
-    "react-hot-loader": "4.12.10"
+    "react-hot-loader": "4.12.10",
+    "react-router-dom": "5.0.1"
   },
   "devDependencies": {
     "@types/enzyme": "3.10.3",
@@ -36,6 +39,7 @@
     "@types/node": "12.6.9",
     "@types/react": "16.8.24",
     "@types/react-dom": "16.8.5",
+    "@types/react-router-dom": "4.3.4",
     "@typescript-eslint/eslint-plugin": "1.13.0",
     "@typescript-eslint/parser": "1.13.0",
     "awesome-typescript-loader": "5.2.1",

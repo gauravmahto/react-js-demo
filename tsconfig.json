@@ -27,6 +27,9 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
+      "components": [
+        "./src/client/components"
+      ],
       "components/*": [
         "./src/client/components/*"
       ]

@@ -40,9 +40,11 @@ export class ImageUploader extends Component<IImageUploaderOptions, IImageUpload
     return (
       <div className="image-uploader">
 
+        <span>Upload image(s)</span>
+        <br />
         <input type="file" {...this.props} onChange={(event) => this.onChangeHandler(event)} />
 
-        <ImageSlider ref={this.imageSliderElem} ></ImageSlider>
+        <ImageSlider ref={this.imageSliderElem}></ImageSlider>
 
       </div>
     );

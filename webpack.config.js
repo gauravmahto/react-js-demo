@@ -9,9 +9,15 @@ const serverWebpackConfig = require('./webpack-back.config');
 
 module.exports = (env, argv) => {
 
-  const webpackConfigs = [ clientWebpackConfig(env, argv) ];
+  const webpackConfigs = [];
 
-  if ('client' !== argv.start) {
+  if ('server' !== argv.build) {
+
+    webpackConfigs.push(clientWebpackConfig(env, argv));
+
+  }
+
+  if ('client' !== argv.build) {
 
     webpackConfigs.push(serverWebpackConfig(env, argv));
 

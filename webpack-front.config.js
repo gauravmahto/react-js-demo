@@ -89,6 +89,7 @@ const clientWebpackConfig = {
   },
 
   devServer: {
+    contentBase: distDir,
     port: 80,
     publicPath: 'http://localhost:80/',
     hotOnly: true
