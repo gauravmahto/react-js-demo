@@ -6,7 +6,7 @@ import { hot } from 'react-hot-loader';
 import React, { Component } from 'react';
 import { Link, RouteComponentProps, Route } from 'react-router-dom';
 
-import { HelloWorld, IHelloWorldParams } from 'components';
+import { HelloWorld } from 'components';
 import { ImageUploader } from 'components';
 
 import './app.scss';
@@ -23,7 +23,7 @@ class App extends Component<RouteComponentProps> {
         <Link to='/image-uploader'>Image Uploader example</Link>
 
         <Route path='/hello-world/:name'
-          render={(props: IHelloWorldParams) => <HelloWorld {...props} />}>
+          render={(props) => <HelloWorld {...props} />}>
         </Route>
 
         <Route path='/image-uploader'
