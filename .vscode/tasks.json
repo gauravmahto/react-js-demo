@@ -27,6 +27,21 @@
       "type": "npm",
       "script": "build-server",
       "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "build-server:watch",
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "start-server:watch",
+      "problemMatcher": []
+    },
+    {
+      "type": "npm",
+      "script": "build-client:watch",
+      "problemMatcher": []
     }
   ]
 }

@@ -9,9 +9,15 @@
     "build-prod": "webpack --mode production",
     "build": "webpack --mode development",
     "build-client": "webpack --mode development --build client",
+    "build-client:watch": "webpack --watch --mode development --build client",
     "build-server": "webpack --mode development --build server",
+    "build-server:watch": "webpack --watch --mode development --build server",
     "start": "webpack-dev-server --mode development --build client",
-    "start-server": "node dist/server/app.js"
+    "start-server": "node dist/server/app.js",
+    "start-server:watch": "npx nodemon dist/server/app.js"
+  },
+  "nodemonConfig": {
+    "delay": "1500"
   },
   "repository": {
     "type": "git",
@@ -55,6 +61,7 @@
     "jsdom": "15.1.1",
     "jsdom-global": "3.0.2",
     "node-sass": "4.12.0",
+    "nodemon": "1.19.1",
     "sass-loader": "7.1.0",
     "source-map-loader": "0.2.4",
     "style-loader": "0.23.1",

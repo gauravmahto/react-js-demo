@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "outDir": "../dist/server",
     "module": "commonjs",
     "target": "es2019",
     "allowJs": true,
