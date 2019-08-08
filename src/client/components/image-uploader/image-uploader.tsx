@@ -3,6 +3,7 @@
   */
 
 import React, { ChangeEvent, Component, createRef, RefObject } from 'react';
+import { Button } from 'react-bootstrap';
 
 import { ImageSlider } from '../index';
 
@@ -26,12 +27,14 @@ export class ImageUploader extends Component<IImageUploaderOptions, IImageUpload
   };
 
   private imageSliderElem: RefObject<ImageSlider>;
+  private fileInputElem: RefObject<HTMLInputElement>;
 
   public constructor(public props: IImageUploaderOptions) {
 
     super(props);
 
     this.imageSliderElem = createRef();
+    this.fileInputElem = createRef();
 
   }
 
@@ -42,7 +45,9 @@ export class ImageUploader extends Component<IImageUploaderOptions, IImageUpload
 
         <span>Upload image(s)</span>
         <br />
-        <input type="file" {...this.props} onChange={(event) => this.onChangeHandler(event)} />
+        <Button onClick={() => this.fileInputElem.current!.click()}>Import images(s)</Button>
+        <input hidden id="import-file" type="file" {...this.props} ref={this.fileInputElem}
+          onChange={(event) => this.onChangeHandler(event)} />
 
         <ImageSlider ref={this.imageSliderElem}></ImageSlider>
 

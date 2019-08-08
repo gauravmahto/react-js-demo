@@ -6,6 +6,8 @@ import { hot } from 'react-hot-loader';
 import React, { Component } from 'react';
 import { Link, RouteComponentProps, Route } from 'react-router-dom';
 
+import './vendors';
+
 import { HelloWorld } from 'components';
 import { ImageUploader } from 'components';
 

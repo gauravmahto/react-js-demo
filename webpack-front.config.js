@@ -67,9 +67,31 @@ const clientWebpackConfig = {
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader',
-          'sass-loader'
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader'
+          },
+          {
+            loader: 'postcss-loader', // Run post css actions
+            options: {
+
+              // Post css plugins, can be exported to postcss.config.js
+              plugins: () => {
+
+                return [
+                  require('precss'),
+                  require('autoprefixer')
+                ];
+
+              }
+
+            }
+          },
+          {
+            loader: 'sass-loader'
+          }
         ]
       }
 

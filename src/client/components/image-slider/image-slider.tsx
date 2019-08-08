@@ -22,10 +22,8 @@ export class ImageSlider extends Component<{}, IImageSliderState> {
 
   public async parseFiles(files: File[]): Promise<void> {
 
-    const imageSrc = await this.readFiles(files);
-
     this.setState({
-      imageSrc
+      imageSrc: await this.readFiles(files)
     });
 
   }
@@ -62,7 +60,7 @@ export class ImageSlider extends Component<{}, IImageSliderState> {
 
     for (const file of files) {
 
-      deferredPromise.push(new Promise((resolve) => {
+      deferredPromise.push(new Promise((resolve, reject) => {
 
         const fileReader = new FileReader();
         fileReader.onload = (event) => {
@@ -72,6 +70,8 @@ export class ImageSlider extends Component<{}, IImageSliderState> {
             return resolve((event.target as FileReader).result as string);
 
           }
+
+          return reject(new Error('Invalid file data.'));
 
         };
 
