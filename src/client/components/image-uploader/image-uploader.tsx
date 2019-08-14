@@ -7,7 +7,7 @@ import { Button } from 'react-bootstrap';
 
 import { ImageSlider } from '../index';
 
-interface IImageUploaderOptions {
+interface IImageUploaderParams {
 
   multiple: boolean;
   accept: string;
@@ -20,7 +20,12 @@ interface IImageUploaderState {
 
 }
 
-export class ImageUploader extends Component<IImageUploaderOptions, IImageUploaderState> {
+export class ImageUploader extends Component<IImageUploaderParams, IImageUploaderState> {
+
+  public static defaultProps: IImageUploaderParams = {
+    accept: 'image/*',
+    multiple: false
+  };
 
   public state = {
     renderImageSlider: false
@@ -29,7 +34,7 @@ export class ImageUploader extends Component<IImageUploaderOptions, IImageUpload
   private imageSliderElem: RefObject<ImageSlider>;
   private fileInputElem: RefObject<HTMLInputElement>;
 
-  public constructor(public props: IImageUploaderOptions) {
+  public constructor(public props: IImageUploaderParams) {
 
     super(props);
 
