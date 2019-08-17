@@ -7,6 +7,8 @@ import { Button } from 'react-bootstrap';
 
 import { ImageSlider } from '../index';
 
+import './image-uploader.scss';
+
 interface IImageUploaderOptions {
 
   multiple: boolean;

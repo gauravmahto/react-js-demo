@@ -3,6 +3,7 @@
   */
 
 import React, { Component } from 'react';
+import { Carousel } from 'react-bootstrap';
 
 import { ConditionalDisplay } from '../index';
 
@@ -34,7 +35,9 @@ export class ImageSlider extends Component<{}, IImageSliderState> {
       <div className="image-slider">
         <ConditionalDisplay isVisible={0 !== this.state.imageSrc.length}>
           <div className="image-container">
-            {...this.getFileDivs()}
+            <Carousel>
+              {...this.getFileDivs()}
+            </Carousel>
           </div>
         </ConditionalDisplay>
       </div>
@@ -47,7 +50,9 @@ export class ImageSlider extends Component<{}, IImageSliderState> {
     return this.state.imageSrc.map((src, index) => {
 
       return (
-        <img key={index} src={src}></img>
+        <Carousel.Item key={index}>
+          <img className="d-block w-100" src={src}></img>
+        </Carousel.Item>
       );
 
     });
