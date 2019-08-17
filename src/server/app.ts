@@ -6,8 +6,10 @@ import { join } from 'path';
 
 import { static as serveStatic, Request, Response } from 'express';
 
+import appConfig from './config';
+
 const app = require('express')();
-const port = 80;
+const port = appConfig.port || 80;
 const STATIC_FOLDER = join(__dirname, '..', 'static');
 
 // Serve static files.
