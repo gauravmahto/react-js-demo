@@ -9,7 +9,7 @@ import { ImageSlider } from '../index';
 
 import './image-uploader.scss';
 
-interface IImageUploaderParams {
+interface IImageUploaderProps {
 
   multiple: boolean;
   accept: string;
@@ -22,9 +22,9 @@ interface IImageUploaderState {
 
 }
 
-export class ImageUploader extends Component<IImageUploaderParams, IImageUploaderState> {
+export class ImageUploader extends Component<IImageUploaderProps, IImageUploaderState> {
 
-  public static defaultProps: IImageUploaderParams = {
+  public static defaultProps: IImageUploaderProps = {
     accept: 'image/*',
     multiple: false
   };
@@ -36,7 +36,7 @@ export class ImageUploader extends Component<IImageUploaderParams, IImageUploade
   private imageSliderElem: RefObject<ImageSlider>;
   private fileInputElem: RefObject<HTMLInputElement>;
 
-  public constructor(public props: IImageUploaderParams) {
+  public constructor(public props: IImageUploaderProps) {
 
     super(props);
 
@@ -52,7 +52,9 @@ export class ImageUploader extends Component<IImageUploaderParams, IImageUploade
 
         <span>Upload image(s)</span>
         <br />
+
         <Button onClick={() => this.fileInputElem.current!.click()}>Import images(s)</Button>
+
         <input hidden id="import-file" type="file" {...this.props} ref={this.fileInputElem}
           onChange={(event) => this.onChangeHandler(event)} />
 
@@ -68,11 +70,19 @@ export class ImageUploader extends Component<IImageUploaderParams, IImageUploade
     if ((null !== this.imageSliderElem.current) &&
       (null !== event.target.files)) {
 
-      await this.imageSliderElem.current.parseFiles(Array.from(event.target.files));
+      try {
 
-      this.setState({
-        renderImageSlider: true
-      });
+        await this.imageSliderElem.current.parseFiles(Array.from(event.target.files));
+
+        this.setState({
+          renderImageSlider: true
+        });
+
+      } catch {
+
+        // Noop
+
+      }
 
     }
 

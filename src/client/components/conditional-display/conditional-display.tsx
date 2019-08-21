@@ -4,14 +4,14 @@
 
 import React from 'react';
 
-interface IConditionalDisplay {
+interface IConditionalDisplayProps {
 
   isVisible: boolean;
   children?: JSX.Element;
 
 }
 
-export function ConditionalDisplay(props: IConditionalDisplay): JSX.Element {
+export function ConditionalDisplay(props: IConditionalDisplayProps): JSX.Element {
 
   return (
     <div className="conditional-display">

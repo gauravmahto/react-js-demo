@@ -7,13 +7,13 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import './hello-world.scss';
 
-export interface IHelloWorldParams {
+export interface IHelloWorldProps {
 
   name: string;
 
 }
 
-export class HelloWorld extends Component<RouteComponentProps<IHelloWorldParams>> {
+export class HelloWorld extends Component<RouteComponentProps<IHelloWorldProps>> {
 
   public render(): JSX.Element {
 
