@@ -33,6 +33,18 @@
       ],
       "components/*": [
         "./src/client/components/*"
+      ],
+      "reducers": [
+        "./src/client/reducers"
+      ],
+      "reducers/*": [
+        "./src/client/reducers/*"
+      ],
+      "stores": [
+        "./src/client/stores"
+      ],
+      "stores/*": [
+        "./src/client/stores/*"
       ]
     }
   },

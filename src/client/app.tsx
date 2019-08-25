@@ -4,12 +4,13 @@
 
 import { hot } from 'react-hot-loader';
 import React, { Component } from 'react';
+import { Provider } from 'react-redux'
 import { Link, RouteComponentProps, Route } from 'react-router-dom';
 
 import './vendors';
 
-import { HelloWorld } from 'components';
-import { ImageUploader } from 'components';
+import appStore from 'stores/app-store';
+import { HelloWorld, ImageUploaderConnectedComponent } from 'components';
 
 import './app.scss';
 
@@ -18,21 +19,25 @@ class App extends Component<RouteComponentProps> {
   public render(): JSX.Element {
 
     return (
-      <div className="app">
+      <Provider store={appStore}>
 
-        <Link to='/hello-world/Gaurav'>Hello World example</Link>
-        <br />
-        <Link to='/image-uploader'>Image Uploader example</Link>
+        <div className="app">
 
-        <Route path='/hello-world/:name'
-          render={(props) => <HelloWorld {...props} />}>
-        </Route>
+          <Link to='/hello-world/Gaurav'>Hello World example</Link>
+          <br />
+          <Link to='/image-uploader'>Image Uploader example</Link>
 
-        <Route path='/image-uploader'
-          render={() => <ImageUploader multiple={true} accept="image/png, image/jpeg" />}>
-        </Route>
+          <Route path='/hello-world/:name'
+            render={(props) => <HelloWorld {...props} />}>
+          </Route>
 
-      </div>
+          <Route path='/image-uploader'
+            render={() => <ImageUploaderConnectedComponent multiple={true} accept="image/png, image/jpeg" />}>
+          </Route>
+
+        </div>
+
+      </Provider>
     );
 
   }

@@ -4,27 +4,23 @@
 
 import React, { Component } from 'react';
 import { Carousel } from 'react-bootstrap';
+import { connect } from 'react-redux';
+
+import { ImageStore, IImage, ImageVisibility } from 'stores';
 
 import { ConditionalDisplay } from '../index';
-
 import './image-slider.scss';
 
-interface IImageSliderState {
+export class ImageSlider extends Component<ImageStore, IImage> {
 
-  imageSrc: string[];
-
-}
-
-export class ImageSlider extends Component<{}, IImageSliderState> {
-
-  public state = {
+  public state: IImage = {
     imageSrc: []
   };
 
-  public async parseFiles(files: File[]): Promise<void> {
+  public componentWillReceiveProps(nextProps: ImageStore): void {
 
     this.setState({
-      imageSrc: await this.readFiles(files)
+      imageSrc: nextProps.imageSrc
     });
 
   }
@@ -33,7 +29,7 @@ export class ImageSlider extends Component<{}, IImageSliderState> {
 
     return (
       <div className="image-slider">
-        <ConditionalDisplay isVisible={0 !== this.state.imageSrc.length}>
+        <ConditionalDisplay isVisible={ImageVisibility.show === this.props.visibility}>
           <div className="image-container">
             <Carousel>
               {...this.getFileDivs()}
@@ -59,35 +55,15 @@ export class ImageSlider extends Component<{}, IImageSliderState> {
 
   }
 
-  private async readFiles(files: File[]): Promise<string[]> {
+}
 
-    const deferredPromise: Array<Promise<string>> = [];
+function mapStateToProps(state: ImageStore): ImageStore {
 
-    for (const file of files) {
-
-      deferredPromise.push(new Promise((resolve, reject) => {
-
-        const fileReader = new FileReader();
-        fileReader.onload = (event) => {
-
-          if (null !== event.target) {
-
-            return resolve((event.target as FileReader).result as string);
-
-          }
-
-          return reject(new Error('Invalid file data.'));
-
-        };
-
-        fileReader.readAsDataURL(file);
-
-      }));
-
-    }
-
-    return Promise.all(deferredPromise);
-
-  }
+  return {
+    imageSrc: state.imageSrc,
+    visibility: state.visibility
+  };
 
 }
+
+export const ImageSliderConnectedComponent = connect(mapStateToProps)(ImageSlider);

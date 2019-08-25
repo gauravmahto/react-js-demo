@@ -97,6 +97,9 @@
         "argsIgnorePattern": "^_"
       }
     ],
+    "@typescript-eslint/no-explicit-any": [
+      "off"
+    ],
     "@typescript-eslint/semi": [
       "error"
     ],

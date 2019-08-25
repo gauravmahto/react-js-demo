@@ -18,7 +18,9 @@ const isDevMode = (mode) => ('development' === mode);
 function getAliases(mode) {
 
   const aliases = {
-    components: join(clientDir, 'components')
+    components: join(clientDir, 'components'),
+    reducers: join(clientDir, 'reducers'),
+    stores: join(clientDir, 'stores')
   };
 
   if (isDevMode(mode)) {
